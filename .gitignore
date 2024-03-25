@@ -1,0 +1,12 @@
+# Archivos de caché y compilación
+*.pyc
+__pycache__/
+
+# Carpeta del ambiente virtual
+venv/
+
+# Archivos de registro y datos temporales
+*.log
+
+# Archivos de configuración específicos del IDE
+.vscode/
