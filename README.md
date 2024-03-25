@@ -6,3 +6,10 @@ This project, developed for the course CE-5302: Computer Engineering Design Proj
 $ python -m venv venv            
 $ source venv/bin/activate       
 $ pip install -r requirements.txt
+```
+
+### Run unit tests
+```python
+$ cd test
+$ pytest
+```
