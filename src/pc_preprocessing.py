@@ -47,12 +47,16 @@ def pc_preprocessing(pcds, voxel_size=0.0, remove_outliers_params=None):
     """
     processed_pcds = []
     for pcd in pcds:
+        # Obtener el tipo de datos de la nube de puntos original
+        pcd_type = type(pcd)
+        
         # Aplicar voxel_down_sample si es necesario
         pcd_processed = voxel_down_sample(pcd, voxel_size=voxel_size)
-
+        
         # Aplicar remove_outliers si se proporcionan parámetros
         if remove_outliers_params is not None:
-            pcd_processed = remove_outliers(pcd_processed, **remove_outliers_params)
+            pcd_processed, indices = remove_outliers(pcd_processed, **remove_outliers_params)
+            pcd_processed = o3d.geometry.PointCloud(pcd_processed)
             
         processed_pcds.append(pcd_processed)
 

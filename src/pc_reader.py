@@ -25,14 +25,14 @@ def load_point_clouds(config_file, voxel_size=0.0):
         if not os.path.isdir(input_path):
             print(f"Error: La ruta especificada '{input_path}' no es un directorio válido.")
             return []
-
+        
+        print(f"Éxito en la lectura del archivo de configuración: La ruta especificada para nubes de puntos de entrada es: '{input_path}'.")
         pcds = []
         for file in os.listdir(input_path):
             if file.endswith(".pcd"):
                 pcd_path = os.path.join(input_path, file)
                 pcd = o3d.io.read_point_cloud(pcd_path)
-                pcd_down = pcd.voxel_down_sample(voxel_size=voxel_size)
-                pcds.append(pcd_down)
+                pcds.append(pcd)
 
         if not pcds:
             print("Advertencia: No se encontraron archivos PCD en la carpeta especificada.")
