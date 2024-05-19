@@ -2,7 +2,7 @@ import os
 import json
 import open3d as o3d
 
-def load_point_clouds(config_file, voxel_size=0.0):
+def load_point_clouds(config_file):
     """
     Carga nubes de puntos desde archivos PCD en una carpeta especificada en un archivo de configuración JSON.
 
@@ -26,7 +26,11 @@ def load_point_clouds(config_file, voxel_size=0.0):
             print(f"Error: La ruta especificada '{input_path}' no es un directorio válido.")
             return []
         
+        output_path = config.get("output_file")
+        
         print(f"Éxito en la lectura del archivo de configuración: La ruta especificada para nubes de puntos de entrada es: '{input_path}'.")
+        print(f"Éxito en la lectura del archivo de configuración: La ruta especificada para la nube de puntos de salida es: '{output_path}'.")
+        
         pcds = []
         for file in os.listdir(input_path):
             if file.endswith(".pcd"):
