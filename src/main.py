@@ -36,6 +36,7 @@ def main():
     voxel_size = config_params.get("voxel_size")
     remove_outliers_params = config_params.get("remove_outliers_params")
     combinability_threshold = config_params.get("combinability_threshold")
+    print(f"Éxito al validar los contenidos del archivo de configuración, iniciando el procesamiento") 
        
     ###====%%%   Downsampling y outlier detection   %%%====###
     preprocessed_pcds = pc_preprocessing(pcds, voxel_size, remove_outliers_params)
@@ -75,14 +76,15 @@ def main():
         # Llama a la función optimize_pose_graph para optimizar el grafo de poses
         pose_graph_optimized = optimize_pose_graph(pose_graph, max_correspondence_distance_fine)
         
+        print(f"Éxito al aplicar el algoritmo, guardando archivo de salida") 
         # Llamar a la función write_combined_pcd para escribir las nubes de puntos combinadas en un archivo .pcd
         write_combined_pcd(preprocessed_pcds, pose_graph_optimized, config_file)
         
-        print("Transform points and display")
-        for point_id in range(len(preprocessed_pcds)):
-            print(pose_graph_optimized.nodes[point_id].pose)
-            preprocessed_pcds[point_id].transform(pose_graph_optimized.nodes[point_id].pose)
-        o3d.visualization.draw(preprocessed_pcds)
+        #print("Transform points and display")
+        #for point_id in range(len(preprocessed_pcds)):
+        #    print(pose_graph_optimized.nodes[point_id].pose)
+        #    preprocessed_pcds[point_id].transform(pose_graph_optimized.nodes[point_id].pose)
+        #o3d.visualization.draw(preprocessed_pcds)
 
 if __name__ == "__main__":
     main()
