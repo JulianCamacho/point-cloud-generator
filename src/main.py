@@ -1,9 +1,9 @@
 from pc_reader import load_point_clouds
 from config_reader import load_config
 from pc_preprocessing import pc_preprocessing
-from pc_comparator import check_all_pc_combinability
 from pc_stacking import pairwise_registration
 from pc_full_registration import full_registration
+from pc_comparator import check_all_pc_combinability
 from pose_graph_optimization import optimize_pose_graph
 from pc_writer import write_combined_pcd
 import open3d as o3d
@@ -23,7 +23,8 @@ def main():
     ###====%%%   Visualización de nubes originales   %%%====###
     colors = [[1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 0],
               [0, 1, 1], [1, 0, 1], [1, 1, 1], [0, 0, 0],
-              [0.5, 0, 0], [0, 0.5, 0], [0, 0, 0.5]]  # Colores RGB para
+              [0.5, 0, 0], [0, 0.5, 0], [0, 0, 0.5], [0.5, 0.5, 0],
+              [0, 0.5, 0.5], [0.5, 0, 0.5], [0.5, 0.5, 0.5]]  # Colores RGB para
     for i in range(len(pcds)):
         pcds[i].paint_uniform_color(colors[i])
     o3d.visualization.draw(pcds)
@@ -50,10 +51,12 @@ def main():
     ###====%%%   Combinabilidad   %%%====###
     combinable_pcds = check_all_pc_combinability(preprocessed_pcds, combinability_threshold)
     print("Pares combinables:", combinable_pcds)
+    print("Cantidad de nubes combinables:", len(combinable_pcds))
 
     # Llamar a la función registration
-    if len(combinable_pcds) == 1: #0
+    if len(combinable_pcds) == 0: 
         print("Las nubes de puntos no tienen suficientes coincidencias para ser combinadas.")
+        return
     else:    
         
     ###==============%%%   Algoritmo de Stacking   %%%==============###
@@ -61,15 +64,15 @@ def main():
         max_correspondence_distance_coarse = voxel_size * 15
         max_correspondence_distance_fine = voxel_size * 1.5
     
-        n_pcds = len(preprocessed_pcds)
+        n_pcds = len(combinable_pcds)
         for source_id in range(n_pcds):
             for target_id in range(source_id + 1, n_pcds):
-                transformation_icp, information_icp = pairwise_registration(preprocessed_pcds[source_id], preprocessed_pcds[target_id], max_correspondence_distance_coarse, max_correspondence_distance_fine)
+                transformation_icp, information_icp = pairwise_registration(combinable_pcds[source_id], combinable_pcds[target_id], max_correspondence_distance_coarse, max_correspondence_distance_fine)
                 print("transformation_icp: ", transformation_icp)
                 print("information_icp: ", information_icp)
                 print("========================")
                 
-        pose_graph = full_registration(preprocessed_pcds,
+        pose_graph = full_registration(combinable_pcds,
                                        max_correspondence_distance_coarse,
                                        max_correspondence_distance_fine)
 
@@ -78,7 +81,7 @@ def main():
         
         print(f"Éxito al aplicar el algoritmo, guardando archivo de salida") 
         # Llamar a la función write_combined_pcd para escribir las nubes de puntos combinadas en un archivo .pcd
-        write_combined_pcd(preprocessed_pcds, pose_graph_optimized, config_file)
+        write_combined_pcd(combinable_pcds, pose_graph_optimized, config_file)
         
         #print("Transform points and display")
         #for point_id in range(len(preprocessed_pcds)):
