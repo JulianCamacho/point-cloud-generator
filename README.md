@@ -1,20 +1,3 @@
-
-
-### Python Virtual Environment Setup 
-```python
-$ python -m venv venv            
-$ source venv/bin/activate       
-$ pip install -r requirements.txt
-```
-
-### Run unit tests
-```python
-$ cd test
-$ pytest
-```
-
-
-
 # Point Cloud Generator
 
 ![Licencia](https://img.shields.io/badge/Licencia-MIT-blue.svg?style=for-the-badge)
@@ -88,6 +71,13 @@ Para ejecutar el proyecto, utilizar el siguiente comando:
 
 ```sh
 python main.py
+```
+
+
+## Unit tests
+```sh
+cd test
+pytest
 ```
 
 ## 3. Archivo de Configuración
