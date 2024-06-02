@@ -8,6 +8,8 @@
 
 *This project, developed for the course CE-5302: Computer Engineering Design Project, focuses on the implementation of an algorithm for point cloud stacking without camera pose information. Using techniques from computer vision and photogrammetry, the project aims to generate three-dimensional maps from individual point clouds.*
 
+<img src="assets/result.png" alt="Texto alternativo de la imagen" width="600"/>
+
 ---
 
 Este proyecto, desarrollado para el curso CE-5302: Proyecto de Diseño en Ingeniería en Computadores, se centra en la implementación de un algoritmo para la apilación de nubes de puntos sin información de la pose de la cámara. Utilizando técnicas de visión por computadora y fotogrametría, el proyecto tiene como objetivo generar mapas tridimensionales a partir de nubes de puntos individuales.
@@ -26,7 +28,6 @@ Este proyecto permite la carga, preprocesamiento y combinación de nubes de punt
 - [Uso](#uso)
 - [Archivo de Configuración](#archivo-de-configuración)
 - [Estructura del Proyecto](#estructura-del-proyecto)
-- [Contribuir](#contribuir)
 - [Licencia](#licencia)
 - [Contacto](#contacto)
 
@@ -121,7 +122,7 @@ Explica la estructura del proyecto y la función de cada archivo/directorio impo
 point-cloud-generator/
 ├── data/                           # Directorio para los archivos de entrada
 │   ├── cloud-points/               # Nubes de puntos individuales (.pcd)
-├── doc                             # Documentación del proyecto
+├── doc/                            # Documentación del proyecto
 ├── results/                        # Directorio para los archivos de salida
 │   ├── nube_combinada.pcd          # Nube de puntos combinada
 ├── src/                            # Código fuente del proyecto
@@ -143,22 +144,11 @@ point-cloud-generator/
 └── LICENSE                         # Licencia del proyecto
 ```
 
-## 5. Contribuir
-
-¡Contribuciones son bienvenidas! Por favor sigue estos pasos para contribuir:
-
-1. Haz un Fork del proyecto.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza tus cambios.
-4. Haz commit de tus cambios (`git commit -am 'Añadir nueva funcionalidad'`).
-5. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
-6. Abre un Pull Request.
-
-## 6. Licencia
+## 5. Licencia
 
 Este proyecto está licenciado como código abierto bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
 
-## 7. Contacto
+## 6. Contacto
 
 José Julián Camacho Hernández - jjulian.341@gmail.com
 
