@@ -1,4 +1,5 @@
 from pc_reader import load_point_clouds
+from colorgen import generate_distinct_colors
 from config_reader import load_config
 from pc_preprocessing import pc_preprocessing
 from pc_stacking import pairwise_registration
@@ -20,12 +21,12 @@ def main():
     # Imprimir el número de nubes de puntos cargadas
     print(f"Se cargaron {len(pcds)} nubes de puntos.")
 
+    # Generar colores distintivos
+    n = len(pcds)
+    colors = generate_distinct_colors(n)
+
     ###====%%%   Visualización de nubes originales   %%%====###
-    colors = [[1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 0],
-              [0, 1, 1], [1, 0, 1], [1, 1, 1], [0, 0, 0],
-              [0.5, 0, 0], [0, 0.5, 0], [0, 0, 0.5], [0.5, 0.5, 0],
-              [0, 0.5, 0.5], [0.5, 0, 0.5], [0.5, 0.5, 0.5]]  # Colores RGB para
-    for i in range(len(pcds)):
+    for i in range(n):
         pcds[i].paint_uniform_color(colors[i])
     o3d.visualization.draw(pcds)
     
@@ -54,7 +55,7 @@ def main():
     print("Cantidad de nubes combinables:", len(combinable_pcds))
 
     # Llamar a la función registration
-    if len(combinable_pcds) == 0: 
+    if len(combinable_pcds) == 1: 
         print("Las nubes de puntos no tienen suficientes coincidencias para ser combinadas.")
         return
     else:    
@@ -83,12 +84,6 @@ def main():
         # Llamar a la función write_combined_pcd para escribir las nubes de puntos combinadas en un archivo .pcd
         write_combined_pcd(combinable_pcds, pose_graph_optimized, config_file)
         
-        #print("Transform points and display")
-        #for point_id in range(len(preprocessed_pcds)):
-        #    print(pose_graph_optimized.nodes[point_id].pose)
-        #    preprocessed_pcds[point_id].transform(pose_graph_optimized.nodes[point_id].pose)
-        #o3d.visualization.draw(preprocessed_pcds)
-
 if __name__ == "__main__":
     main()
     

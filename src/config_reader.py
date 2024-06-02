@@ -72,8 +72,3 @@ def load_config(config_file):
     except json.JSONDecodeError:
         print(f"Error: No se pudo analizar el archivo JSON {config_file}.")
         return default_config
-
-# Ejemplo de uso
-config_file = "../data/config.json"
-config = load_config(config_file)
-print(config)

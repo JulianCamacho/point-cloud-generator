@@ -83,8 +83,3 @@ def process_point_clouds_in_folder(folder_path, output_file):
                     
                     # Escribir resultados en el archivo CSV
                     csvwriter.writerow([files[i], files[j]] + list(features))
-
-# Ejemplo de uso
-folder_path = "../data/test"
-output_file = "train.csv"
-process_point_clouds_in_folder(folder_path, output_file)

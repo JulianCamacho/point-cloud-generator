@@ -37,3 +37,6 @@ def write_combined_pcd(preprocessed_pcds, pose_graph_optimized, config_file):
 
     # Guardar la nube de puntos combinada en un archivo .pcd
     o3d.io.write_point_cloud(output_file, combined_pcd)
+    
+    output_pcd = o3d.io.read_point_cloud(output_file)
+    o3d.visualization.draw_geometries([output_pcd])

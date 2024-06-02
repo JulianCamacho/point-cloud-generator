@@ -70,7 +70,8 @@ pip install -r requirements.txt
 Para ejecutar el proyecto, utilizar el siguiente comando:
 
 ```sh
-python main.py
+cd src
+python3 main.py
 ```
 
 

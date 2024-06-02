@@ -1,13 +1,13 @@
 {
-    "input_path": "../data/dragon",
+    "input_path": "../data/test_2",
     "config_params": {
-        "voxel_size": 0.001,
+        "voxel_size": 0.02,
         "remove_outliers_params": {
             "nb_neighbors": 20,
             "std_ratio": 2.0
         },
-        "combinability_threshold": 0.0123
+        "combinability_threshold": 0.175
     },
-    "output_file": "../results/nube_pcd_salida_2.pcd"
+    "output_file": "../results/nube_pcd_salida_7.pcd"
 }
 
